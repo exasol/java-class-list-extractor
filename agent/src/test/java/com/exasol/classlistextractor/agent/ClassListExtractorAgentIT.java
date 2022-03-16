@@ -1,7 +1,7 @@
 package com.exasol.classlistextractor.agent;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.startsWith;
+import static org.hamcrest.Matchers.containsString;
 
 import java.io.IOException;
 import java.io.UncheckedIOException;
@@ -28,8 +28,7 @@ class ClassListExtractorAgentIT {
                 "-javaagent:" + AGENT_JAR + "=localhost:" + simpleServer.serverSocket.getLocalPort(), "-cp",
                 tempDir.toString(), "com/exasol/classlistextractor/agent/HelloWorld" });
         simpleServer.stop();
-        assertThat(simpleServer.getResult(),
-                startsWith("java/lang/Object\n" + "java/io/Serializable\n" + "java/lang/Comparable\n"));
+        assertThat(simpleServer.getResult(), containsString("com/exasol/classlistextractor/agent/HelloWorld"));
     }
 
     private void runCommand(final String[] args) throws IOException, InterruptedException {
