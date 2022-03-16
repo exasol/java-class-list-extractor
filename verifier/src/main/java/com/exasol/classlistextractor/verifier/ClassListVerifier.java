@@ -30,7 +30,7 @@ public class ClassListVerifier {
                     ExaError.messageBuilder("E-JCLE-VF-13").message("Could not find jar file {{jar file}}.", jarFile)
                             .mitigation("Usually this can be solved by running 'mvn package'.").toString());
         }
-        final Optional<String> classListFile = findZipFileInJar(jarFile);
+        final Optional<String> classListFile = findClassListInJar(jarFile);
         if (classListFile.isEmpty()) {
             handleEmptyClassList(classList, jarFile);
         } else {
@@ -72,7 +72,7 @@ public class ClassListVerifier {
         }
     }
 
-    private Optional<String> findZipFileInJar(final Path jarFile) {
+    private Optional<String> findClassListInJar(final Path jarFile) {
         try (final FileInputStream inputStream = new FileInputStream(jarFile.toFile());
                 final BufferedInputStream bufferedStream = new BufferedInputStream(inputStream);
                 final ZipInputStream zipInputStream = new ZipInputStream(bufferedStream)) {
