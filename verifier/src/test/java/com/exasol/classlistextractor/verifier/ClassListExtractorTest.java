@@ -24,7 +24,7 @@ class ClassListExtractorTest {
             final IllegalStateException exception = assertThrows(IllegalStateException.class,
                     () -> extractor.capture(EMPTY_CALLBACK));
             assertThat(exception.getMessage(), equalTo(
-                    "E-JCLE-V-11: Missing call to getJvmOptions(). Make sure that you add the JVM options provided by getJvmOptions to your script definition."));
+                    "E-JCLE-VF-11: Missing call to getJvmOptions(). Make sure that you add the JVM options provided by getJvmOptions to your script definition."));
         }
     }
 
@@ -39,7 +39,7 @@ class ClassListExtractorTest {
             final IllegalStateException exception = assertThrows(IllegalStateException.class,
                     () -> extractor.capture(throwingCallback));
             assertAll(//
-                    () -> assertThat(exception.getMessage(), equalTo("E-JCLE-V-11: Exception in capture function.")), //
+                    () -> assertThat(exception.getMessage(), equalTo("E-JCLE-VF-17: Exception in capture function.")), //
                     () -> assertThat(exception.getCause(), equalTo(exceptionThrownInCallback))//
             );
         }
@@ -52,7 +52,7 @@ class ClassListExtractorTest {
             final IllegalStateException exception = assertThrows(IllegalStateException.class,
                     () -> extractor.capture(EMPTY_CALLBACK));
             assertThat(exception.getMessage(), equalTo(
-                    "E-JCLE-V-10: Something went wrong with extracting the class list, since no classes were captured. Known mitigations:\n* Check that the function passed to capture runs a query that involves the UDF / VirtualSchema you want to analyze.\n* Make sure you added the JVM options to the script definition."));
+                    "E-JCLE-VF-10: Something went wrong with extracting the class list, since no classes were captured. Known mitigations:\n* Check that the function passed to capture runs a query that involves the UDF / VirtualSchema you want to analyze.\n* Make sure you added the JVM options to the script definition."));
         }
     }
 

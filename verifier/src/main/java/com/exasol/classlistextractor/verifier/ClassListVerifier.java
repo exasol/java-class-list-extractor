@@ -27,7 +27,7 @@ public class ClassListVerifier {
     public void verifyClassListFile(final Collection<String> classList, final Path jarFile) {
         if (!Files.exists(jarFile)) {
             throw new AssertionError(
-                    ExaError.messageBuilder("E-JCLE-V-13").message("Could not find jar file {{jar file}}.", jarFile)
+                    ExaError.messageBuilder("E-JCLE-VF-13").message("Could not find jar file {{jar file}}.", jarFile)
                             .mitigation("Usually this can be solved by running 'mvn package'.").toString());
         }
         final Optional<String> classListFile = findZipFileInJar(jarFile);
@@ -38,7 +38,7 @@ public class ClassListVerifier {
                     .collect(Collectors.toSet());
             if (!classesInFile.equals(new HashSet<>(classList))) {
                 final Path generatedFilePath = writeClassListToTarget(classList);
-                throw new AssertionError(ExaError.messageBuilder("E-JCLE-V-16")
+                throw new AssertionError(ExaError.messageBuilder("E-JCLE-VF-16")
                         .message("Found outdated " + CLASSES_LIST_FILE_NAME + " in the jar file {{jar file}}.", jarFile)
                         .mitigation(
                                 "You can fix that by copying the generated file from {{generated class file path}} to src/main/resources/"
@@ -51,7 +51,7 @@ public class ClassListVerifier {
 
     private void handleEmptyClassList(final Collection<String> classList, final Path jarFile) {
         final Path generatedFilePath = writeClassListToTarget(classList);
-        throw new AssertionError(ExaError.messageBuilder("E-JCLE-V-14")
+        throw new AssertionError(ExaError.messageBuilder("E-JCLE-VF-14")
                 .message("Could not find " + CLASSES_LIST_FILE_NAME + " in the jar file {{jar file}}.", jarFile)
                 .mitigation(
                         "You can fix that by copying the generated file from {{generated class file path}} to src/main/resources/"
@@ -66,7 +66,7 @@ public class ClassListVerifier {
             Files.writeString(generatedFilePath, String.join(System.lineSeparator(), classList));
             return generatedFilePath;
         } catch (final IOException exception) {
-            throw new IllegalStateException(ExaError.messageBuilder("E-JCLE-V-15")
+            throw new IllegalStateException(ExaError.messageBuilder("E-JCLE-VF-15")
                     .message("Failed to write extracted class list to {{target path}}.", generatedFilePath).toString(),
                     exception);
         }
@@ -85,7 +85,7 @@ public class ClassListVerifier {
             }
             return Optional.empty();
         } catch (final IOException exception) {
-            throw new UncheckedIOException(ExaError.messageBuilder("E-JCLE-V-12")
+            throw new UncheckedIOException(ExaError.messageBuilder("E-JCLE-VF-12")
                     .message("Error while reading jar-file contents for checking if it contains the correct "
                             + CLASSES_LIST_FILE_NAME + " file.")
                     .toString(), exception);

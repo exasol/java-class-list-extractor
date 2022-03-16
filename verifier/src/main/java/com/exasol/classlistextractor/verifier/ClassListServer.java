@@ -72,7 +72,7 @@ class ClassListServer implements AutoCloseable {
                 this.serverSocket.setSoTimeout(50);
                 this.port = this.serverSocket.getLocalPort();
             } catch (final IOException exception) {
-                throw new UncheckedIOException(ExaError.messageBuilder("E-JCLE-V-3")
+                throw new UncheckedIOException(ExaError.messageBuilder("E-JCLE-VF-3")
                         .message("Failed to start a server for retrieving the class lists of a project.").toString(),
                         exception);
             }
@@ -85,7 +85,7 @@ class ClassListServer implements AutoCloseable {
             try {
                 this.serverSocket.close();
             } catch (final IOException exception) {
-                throw new UncheckedIOException(ExaError.messageBuilder("E-JCLE-V-6")
+                throw new UncheckedIOException(ExaError.messageBuilder("E-JCLE-VF-6")
                         .message("Failed to close the server for retrieving the class lists of a project.").toString(),
                         exception);
             }
@@ -113,7 +113,7 @@ class ClassListServer implements AutoCloseable {
                         this.serverThreadMonitor.wait();
                     } catch (final InterruptedException exception) {
                         Thread.currentThread().interrupt();
-                        throw new IllegalStateException(ExaError.messageBuilder("E-JCLE-V-9")
+                        throw new IllegalStateException(ExaError.messageBuilder("E-JCLE-VF-9")
                                 .message("Interrupted while waiting for class list.").toString(), exception);
                     }
                 }
@@ -126,11 +126,11 @@ class ClassListServer implements AutoCloseable {
             } catch (final InterruptedException exception) {
                 Thread.currentThread().interrupt();
                 throw new IllegalStateException(
-                        ExaError.messageBuilder("E-JCLE-V-7")
+                        ExaError.messageBuilder("E-JCLE-VF-7")
                                 .message("Interrupted while waiting for class list reader to finish.").toString(),
                         exception);
             } catch (final ExecutionException | TimeoutException exception) {
-                throw new IllegalStateException(ExaError.messageBuilder("F-JCLE-V-8")
+                throw new IllegalStateException(ExaError.messageBuilder("F-JCLE-VF-8")
                         .message("Failed to read result of class list client.").ticketMitigation().toString(),
                         exception);
             }
@@ -151,7 +151,7 @@ class ClassListServer implements AutoCloseable {
                     }
                 } catch (final IOException exception) {
                     if (!exception.getMessage().equals("Socket closed")) {
-                        throw new UncheckedIOException(ExaError.messageBuilder("E-JCLE-V-4")
+                        throw new UncheckedIOException(ExaError.messageBuilder("E-JCLE-VF-4")
                                 .message("Failed accept a class list client.").toString(), exception);
                     }
                 }
@@ -163,7 +163,7 @@ class ClassListServer implements AutoCloseable {
                 final String classList = new String(inputStream.readAllBytes(), StandardCharsets.UTF_8);
                 return Arrays.asList(classList.split("\n"));
             } catch (final IOException exception) {
-                throw new UncheckedIOException(ExaError.messageBuilder("E-JCLE-V-5")
+                throw new UncheckedIOException(ExaError.messageBuilder("E-JCLE-VF-5")
                         .message("Failed to read from class list client.").toString(), exception);
             }
         }

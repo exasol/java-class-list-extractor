@@ -50,6 +50,17 @@ Code name:
 * Added `com.exasol:bucketfs-java:2.2.0`
 * Added `com.exasol:error-reporting-java:0.4.1`
 
+#### Test Dependency Updates
+
+* Added `com.exasol:exasol-testcontainers:6.1.1`
+* Added `com.exasol:test-db-builder-java:3.3.1`
+* Added `com.exasol:udf-debugging-java:0.6.0`
+* Added `org.hamcrest:hamcrest:2.2`
+* Added `org.junit.jupiter:junit-jupiter-engine:5.8.2`
+* Added `org.junit.jupiter:junit-jupiter-params:5.8.2`
+* Added `org.mockito:mockito-junit-jupiter:4.3.1`
+* Added `org.testcontainers:junit-jupiter:1.16.3`
+
 #### Plugin Dependency Updates
 
 * Added `com.exasol:error-code-crawler-maven-plugin:0.7.1`

@@ -62,7 +62,7 @@ public class ClassListExtractor implements AutoCloseable {
         runCallback(runnable);
         final List<String> classList = this.server.getClassList();
         if (classList.isEmpty()) {
-            throw new IllegalStateException(ExaError.messageBuilder("E-JCLE-V-10")
+            throw new IllegalStateException(ExaError.messageBuilder("E-JCLE-VF-10")
                     .message("Something went wrong with extracting the class list, since no classes were captured.")
                     .mitigation(
                             "Check that the function passed to capture runs a query that involves the UDF / VirtualSchema you want to analyze.")
@@ -76,14 +76,14 @@ public class ClassListExtractor implements AutoCloseable {
             runnable.run();
         } catch (final Exception exception) {
             throw new IllegalStateException(
-                    ExaError.messageBuilder("E-JCLE-V-11").message("Exception in capture function.").toString(),
+                    ExaError.messageBuilder("E-JCLE-VF-17").message("Exception in capture function.").toString(),
                     exception);
         }
     }
 
     private void assertGetJvmOptionsWasCalled() {
         if (!this.getJvmOptionsWasCalled) {
-            throw new IllegalStateException(ExaError.messageBuilder("E-JCLE-V-11")
+            throw new IllegalStateException(ExaError.messageBuilder("E-JCLE-VF-11")
                     .message("Missing call to getJvmOptions().")
                     .mitigation(
                             "Make sure that you add the JVM options provided by getJvmOptions to your script definition.")

@@ -45,7 +45,7 @@ class ClassListVerifierTest {
                 () -> verifier.verifyClassListFile(classList, jar));
         assertAll(//
                 () -> assertThat(exception.getMessage(),
-                        Matchers.allOf(startsWith("E-JCLE-V-16: Found outdated classes.lst in the jar file"), endsWith(
+                        Matchers.allOf(startsWith("E-JCLE-VF-16: Found outdated classes.lst in the jar file"), endsWith(
                                 "You can fix that by copying the generated file from target/generated-classes.lst to src/main/resources/classes.lst: \ncp target/generated-classes.lst src/main/resources/"))),
                 () -> assertGeneratedClassList(classList)//
         );
@@ -67,7 +67,7 @@ class ClassListVerifierTest {
                 () -> verifier.verifyClassListFile(classList, jar));
         assertAll(//
                 () -> assertThat(exception.getMessage(),
-                        Matchers.allOf(startsWith("E-JCLE-V-14: Could not find classes.lst in the jar file"), endsWith(
+                        Matchers.allOf(startsWith("E-JCLE-VF-14: Could not find classes.lst in the jar file"), endsWith(
                                 "You can fix that by copying the generated file from target/generated-classes.lst to src/main/resources/classes.lst: \ncp target/generated-classes.lst src/main/resources/"))),
                 () -> assertGeneratedClassList(classList)//
         );
@@ -80,7 +80,7 @@ class ClassListVerifierTest {
         final List<String> classList = List.of("com/exasol/ExaMetadata", "com/exasol/Other");
         final AssertionError exception = assertThrows(AssertionError.class,
                 () -> verifier.verifyClassListFile(classList, jar));
-        assertThat(exception.getMessage(), Matchers.allOf(startsWith("E-JCLE-V-13: Could not find jar file "),
+        assertThat(exception.getMessage(), Matchers.allOf(startsWith("E-JCLE-VF-13: Could not find jar file "),
                 endsWith("Usually this can be solved by running 'mvn package'.")));
     }
 

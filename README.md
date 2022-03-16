@@ -1,6 +1,6 @@
 # Java Class List Extractor
 
-[![Build Status](https://github.com/exasol/java-class-list-extractor-aggregator/actions/workflows/ci-build.yml/badge.svg)](https://github.com/exasol/java-class-list-extractor-aggregator/actions/workflows/ci-build.yml)
+[![Build Status](https://github.com/exasol/java-class-list-extractor/actions/workflows/ci-build.yml/badge.svg)](https://github.com/exasol/java-class-list-extractor/actions/workflows/ci-build.yml)
 
 The Java Class List Extractor is a tool that helps you to capture a list of loaded classed from Java UDFs / AdapterScripts in an Exasol database. The class list is required for improving the start-up performance of Java UDF using [java-udf-startup-time-improver](https://github.com/exasol/java-udf-startup-time-improver/).
 
