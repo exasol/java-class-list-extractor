@@ -50,7 +50,7 @@ public class ClassListExtractorAgent {
     private static IllegalArgumentException getInvalidArgsException(final String agentArgs) {
         return new IllegalArgumentException(
                 ExaError.messageBuilder("E-JCLE-AG-1").message("Invalid argument string {{arguments}}.", agentArgs)
-                        .mitigation("The arguments must have the format host:port").toString());
+                        .mitigation("The arguments must have the format host:port.").toString());
     }
 
     private static class ClassListSender implements Runnable {
