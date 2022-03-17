@@ -2,7 +2,7 @@ package com.exasol.classlistextractor.verifier;
 
 import java.io.InputStream;
 import java.net.InetSocketAddress;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.TimeoutException;
 
 import com.exasol.bucketfs.Bucket;
@@ -58,9 +58,41 @@ public class ClassListExtractor implements AutoCloseable {
      */
     public List<String> capture(final CallbackWithQueryToScript runnable) {
         assertGetJvmOptionsWasCalled();
+        final List<Set<String>> classLists = new ArrayList<>();
+        for (int run = 0; run < 5; run++) {
+            classLists.add(recordClassLoading(runnable));
+        }
+        // By building the intersection of multiple runs we make the result more stable since flanky classes are removed
+        return intersection(classLists);
+    }
+
+    private List<String> intersection(final List<Set<String>> classLists) {
+        final Set<String> union = new HashSet<>();
+        for (final Set<String> classList : classLists) {
+            union.addAll(classList);
+        }
+        final List<String> intersection = new ArrayList<>();
+        for (final String className : union) {
+            if (doAllClassListsContain(classLists, className)) {
+                intersection.add(className);
+            }
+        }
+        return intersection;
+    }
+
+    private boolean doAllClassListsContain(final List<Set<String>> classLists, final String className) {
+        for (final Set<String> classList : classLists) {
+            if (!classList.contains(className)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private Set<String> recordClassLoading(final CallbackWithQueryToScript runnable) {
         this.server.clear();
         runCallback(runnable);
-        final List<String> classList = this.server.getClassList();
+        final Set<String> classList = this.server.getClassList();
         if (classList.isEmpty()) {
             throw new IllegalStateException(ExaError.messageBuilder("E-JCLE-VF-10")
                     .message("Something went wrong with extracting the class list, since no classes were captured.")

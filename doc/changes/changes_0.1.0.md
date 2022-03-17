@@ -6,6 +6,10 @@ Code name:
 
 * #1: Initial Implementation
 
+## Bug Fixes
+
+* #4: Made class list generation more stable
+
 ## Dependency Updates
 
 ### Class List Extractor Agent
