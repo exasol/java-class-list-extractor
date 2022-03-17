@@ -43,7 +43,7 @@ public class ClassListVerifier {
                         .mitigation(
                                 "You can fix that by copying the generated file from {{generated class file path}} to src/main/resources/"
                                         + CLASSES_LIST_FILE_NAME
-                                        + ": \ncp {{generated class file path|uq}} src/main/resources/")
+                                        + ": \ncp {{generated class file path|uq}} src/main/resources/classes.lst")
                         .parameter("generated class file path", generatedFilePath).toString());
             }
         }
@@ -56,7 +56,7 @@ public class ClassListVerifier {
                 .mitigation(
                         "You can fix that by copying the generated file from {{generated class file path}} to src/main/resources/"
                                 + CLASSES_LIST_FILE_NAME
-                                + ": \ncp {{generated class file path|uq}} src/main/resources/")
+                                + ": \ncp {{generated class file path|uq}} src/main/resources/classes.lst")
                 .parameter("generated class file path", generatedFilePath).toString());
     }
 
@@ -85,10 +85,10 @@ public class ClassListVerifier {
             }
             return Optional.empty();
         } catch (final IOException exception) {
-            throw new UncheckedIOException(ExaError.messageBuilder("E-JCLE-VF-12")
-                    .message("Error while reading jar-file {{jar file}} contents for checking if it contains the correct "
-                            + CLASSES_LIST_FILE_NAME + " file.", jarFile)
-                    .toString(), exception);
+            throw new UncheckedIOException(ExaError.messageBuilder("E-JCLE-VF-12").message(
+                    "Error while reading jar-file {{jar file}} contents for checking if it contains the correct "
+                            + CLASSES_LIST_FILE_NAME + " file.",
+                    jarFile).toString(), exception);
         }
     }
 }
