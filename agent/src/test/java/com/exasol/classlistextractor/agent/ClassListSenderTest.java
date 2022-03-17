@@ -21,7 +21,8 @@ class ClassListSenderTest {
     Path tempDir;
 
     @Test
-    void testSend() throws IOException {
+    @SuppressWarnings("java:S2925") // sleep is a pragmatic solution here
+    void testSend() throws IOException, InterruptedException {
         final SimpleServer simpleServer = new SimpleServer();
         new Thread(simpleServer).start();
         final InetSocketAddress address = new InetSocketAddress("127.0.0.1", simpleServer.getPort());
@@ -30,6 +31,7 @@ class ClassListSenderTest {
         final ClassListSender sender = new ClassListSender(address, classListPath);
         sender.run();
         simpleServer.stop();
+        Thread.sleep(10);// wait for receive
         assertThat(simpleServer.getResult(), equalTo("test\nother"));
     }
 

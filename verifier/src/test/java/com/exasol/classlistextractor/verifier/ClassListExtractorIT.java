@@ -34,7 +34,7 @@ class ClassListExtractorIT {
         statement = connection.createStatement();
         final UdfTestSetup udfTestSetup = new UdfTestSetup(EXASOL.getHostIp(), EXASOL.getDefaultBucket(), connection);
         extractor = new ClassListExtractor(EXASOL.getDefaultBucket(),
-                port -> new InetSocketAddress(EXASOL.getHostIp() + "", port));
+                port -> new InetSocketAddress(EXASOL.getHostIp(), port));
         final List<String> jvmOptions = new ArrayList<>(Arrays.asList(udfTestSetup.getJvmOptions()));
         jvmOptions.addAll(Arrays.asList(extractor.getJvmOptions()));
         final ExasolObjectFactory objectFactory = new ExasolObjectFactory(connection,

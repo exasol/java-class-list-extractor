@@ -91,7 +91,7 @@ class ClassListServer implements AutoCloseable {
             }
         }
 
-        synchronized void clear() {
+        void clear() {
             waitForServerThreadToHandlePendingClients();
             this.classListReaders.clear();
         }
