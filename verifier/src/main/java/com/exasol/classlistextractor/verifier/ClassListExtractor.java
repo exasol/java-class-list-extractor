@@ -10,7 +10,7 @@ import com.exasol.bucketfs.BucketAccessException;
 import com.exasol.errorreporting.ExaError;
 
 /**
- * This class captures the classes loaded the JVM of a UDF.
+ * This class captures the classes loaded by the JVM of a UDF.
  */
 public class ClassListExtractor implements AutoCloseable {
     private static final String AGENT_JAR = "java-class-list-extractor-agent.jar";
@@ -33,7 +33,7 @@ public class ClassListExtractor implements AutoCloseable {
     }
 
     /**
-     * Get the JVM options for that must be added to the script.
+     * Get the JVM options that must be added to the script.
      * 
      * @return jvm options
      */
@@ -119,13 +119,13 @@ public class ClassListExtractor implements AutoCloseable {
     }
 
     /**
-     * Interface for a method that runs a query to a script, that's class loadig you want to analyze with
+     * Interface for a method that runs a query to a script, that loads classes you want to analyze with
      * {@link #capture(CallbackWithQueryToScript)}.
      */
     @FunctionalInterface
     public interface CallbackWithQueryToScript {
         /**
-         * Method that runs a query to a script, that's class loadig you want to analyze with
+         * Method that runs a query to a script, that loads classes you want to analyze with
          * {@link #capture(CallbackWithQueryToScript)}.
          *
          * @throws Exception if something goes wrong

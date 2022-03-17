@@ -48,7 +48,7 @@ class ClassListServer implements AutoCloseable {
     /**
      * Get the received class list.
      * <p>
-     * The class list is a union (with duplicate removal) of all revieved class lists since the last call to
+     * The class list is a union (with duplicates removed) of all retrieved class lists since the last call to
      * {@link #clear()}.
      * </p>
      * 
