@@ -30,8 +30,8 @@ class ClassListSenderTest {
         Files.writeString(classListPath, "test\nother");
         final ClassListSender sender = new ClassListSender(address, classListPath);
         sender.run();
-        simpleServer.stop();
         Thread.sleep(500);// wait for receive
+        simpleServer.stop();
         assertThat(simpleServer.getResult(), equalTo("test\nother"));
     }
 
