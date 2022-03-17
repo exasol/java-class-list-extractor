@@ -7,7 +7,7 @@ import com.exasol.errorreporting.ExaError;
 
 /**
  * This class is a Java agent that can be attached to the JVM in a UDF. It installs a hook on shutdown of the JVM and
- * then transfers the contents of /tmp/classes.lst to a tcp socket. This agent is required since we can't access to the
+ * then transfers the contents of /tmp/classes.lst to a tcp socket. This agent is required since we can't access the
  * /tmp of a UDF.
  */
 public class ClassListExtractorAgent {

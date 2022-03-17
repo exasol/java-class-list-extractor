@@ -12,14 +12,14 @@ import java.util.zip.ZipInputStream;
 import com.exasol.errorreporting.ExaError;
 
 /**
- * This class verifies that a jar file contains an {@code classes.lst} file and validates that it contains the expected
+ * This class verifies that a jar file contains a {@code classes.lst} file and validates that it contains the expected
  * classes.
  */
 public class ClassListVerifier {
     private static final String CLASSES_LIST_FILE_NAME = "classes.lst";
 
     /**
-     * Verify that a jar file contains an {@code classes.lst} file and validates that it contains the expected classes.
+     * Verify that a jar file contains a {@code classes.lst} file and validates that it contains the expected classes.
      * 
      * @param classList list of expected
      * @param jarFile   jar file to verify
@@ -86,8 +86,8 @@ public class ClassListVerifier {
             return Optional.empty();
         } catch (final IOException exception) {
             throw new UncheckedIOException(ExaError.messageBuilder("E-JCLE-VF-12")
-                    .message("Error while reading jar-file contents for checking if it contains the correct "
-                            + CLASSES_LIST_FILE_NAME + " file.")
+                    .message("Error while reading jar-file {{jar file}} contents for checking if it contains the correct "
+                            + CLASSES_LIST_FILE_NAME + " file.", jarFile)
                     .toString(), exception);
         }
     }

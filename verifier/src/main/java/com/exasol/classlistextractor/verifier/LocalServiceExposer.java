@@ -3,7 +3,7 @@ package com.exasol.classlistextractor.verifier;
 import java.net.InetSocketAddress;
 
 /**
- * Implementors of this interface exposes a local service (socket) into the Exasol database.
+ * Implementors of this interface expose a local service (socket) into the Exasol database.
  */
 @FunctionalInterface
 public interface LocalServiceExposer {
