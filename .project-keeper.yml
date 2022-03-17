@@ -1,0 +1,15 @@
+sources:
+  - type: maven
+    path: agent/pom.xml
+    modules:
+      - jar_artifact
+      - integration_tests
+      - udf_coverage
+    advertise: false
+  - type: maven
+    path: verifier/pom.xml
+    modules:
+      - lombok
+version:
+  fromSource: verifier/pom.xml
+

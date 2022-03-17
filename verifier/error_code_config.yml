@@ -1,0 +1,5 @@
+error-tags:
+  JCLE-VF:
+    packages:
+      - com.exasol.classlistextractor.verifier
+    highest-index: 17
