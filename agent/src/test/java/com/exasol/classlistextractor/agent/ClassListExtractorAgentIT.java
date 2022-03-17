@@ -4,9 +4,6 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
 
 import java.io.IOException;
-import java.io.UncheckedIOException;
-import java.net.ServerSocket;
-import java.net.Socket;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 
@@ -25,8 +22,8 @@ class ClassListExtractorAgentIT {
         final Path coverage = Path.of("target/jacoco-it-nested.exec").toAbsolutePath();
         runCommand(new String[] { "java", "-XX:DumpLoadedClassList=/tmp/classes.lst",
                 "-javaagent:target/jacoco-agent/org.jacoco.agent-runtime.jar=destfile=" + coverage,
-                "-javaagent:" + AGENT_JAR + "=localhost:" + simpleServer.serverSocket.getLocalPort(), "-cp",
-                tempDir.toString(), "com/exasol/classlistextractor/agent/HelloWorld" });
+                "-javaagent:" + AGENT_JAR + "=localhost:" + simpleServer.getPort(), "-cp", tempDir.toString(),
+                "com/exasol/classlistextractor/agent/HelloWorld" });
         simpleServer.stop();
         assertThat(simpleServer.getResult(), containsString("com/exasol/classlistextractor/agent/HelloWorld"));
     }
@@ -41,35 +38,4 @@ class ClassListExtractorAgentIT {
         }
     }
 
-    private static class SimpleServer implements Runnable {
-        private final ServerSocket serverSocket;
-        private final StringBuilder result = new StringBuilder();
-        private boolean running = true;
-
-        public SimpleServer() throws IOException {
-            this.serverSocket = new ServerSocket(0);
-        }
-
-        public void stop() throws IOException {
-            this.running = false;
-            this.serverSocket.close();
-        }
-
-        public String getResult() {
-            return this.result.toString();
-        }
-
-        @Override
-        public void run() {
-            while (this.running) {
-                try {
-                    final Socket client = this.serverSocket.accept();
-                    this.result.append(new String(client.getInputStream().readAllBytes(), StandardCharsets.UTF_8));
-                } catch (final IOException exception) {
-                    if (!exception.getMessage().equals("Socket closed"))
-                        throw new UncheckedIOException("Failed to read from client.", exception);
-                }
-            }
-        }
-    }
 }

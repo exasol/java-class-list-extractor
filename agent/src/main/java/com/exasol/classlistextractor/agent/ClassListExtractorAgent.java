@@ -1,11 +1,6 @@
 package com.exasol.classlistextractor.agent;
 
-import java.io.IOException;
-import java.io.UncheckedIOException;
 import java.net.InetSocketAddress;
-import java.nio.ByteBuffer;
-import java.nio.channels.SocketChannel;
-import java.nio.file.Files;
 import java.nio.file.Path;
 
 import com.exasol.errorreporting.ExaError;
@@ -28,7 +23,8 @@ public class ClassListExtractorAgent {
      */
     public static void premain(final String argument) {
         final InetSocketAddress serverAddress = parseArgumentString(argument);
-        Runtime.getRuntime().addShutdownHook(new Thread(new ClassListSender(serverAddress)));
+        Runtime.getRuntime()
+                .addShutdownHook(new Thread(new ClassListSender(serverAddress, Path.of("/tmp/classes.lst"))));
     }
 
     private static InetSocketAddress parseArgumentString(final String argument) {
@@ -53,24 +49,4 @@ public class ClassListExtractorAgent {
                         .mitigation("The arguments must have the format host:port.").toString());
     }
 
-    private static class ClassListSender implements Runnable {
-        private final InetSocketAddress serverAddress;
-
-        private ClassListSender(final InetSocketAddress serverAddress) {
-            this.serverAddress = serverAddress;
-        }
-
-        @Override
-        public void run() {
-            try {
-                final String classList = Files.readString(Path.of("/tmp/classes.lst"));
-                try (final SocketChannel socketChannel = SocketChannel.open(this.serverAddress)) {
-                    socketChannel.write(ByteBuffer.wrap(classList.getBytes()));
-                }
-            } catch (final IOException exception) {
-                throw new UncheckedIOException(ExaError.messageBuilder("E-JCLE-AG-2")
-                        .message("Failed to send classes list to socket.").toString(), exception);
-            }
-        }
-    }
 }
