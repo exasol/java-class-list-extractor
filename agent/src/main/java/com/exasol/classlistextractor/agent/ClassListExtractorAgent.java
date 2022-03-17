@@ -21,6 +21,7 @@ public class ClassListExtractorAgent {
      * 
      * @param argument argument string
      */
+    @SuppressWarnings("java:S5443") // reading from /tmp is safe in UDF since they run in an isolated container
     public static void premain(final String argument) {
         final InetSocketAddress serverAddress = parseArgumentString(argument);
         Runtime.getRuntime()
