@@ -31,7 +31,7 @@ class ClassListSenderTest {
         final ClassListSender sender = new ClassListSender(address, classListPath);
         sender.run();
         simpleServer.stop();
-        Thread.sleep(10);// wait for receive
+        Thread.sleep(500);// wait for receive
         assertThat(simpleServer.getResult(), equalTo("test\nother"));
     }
 
