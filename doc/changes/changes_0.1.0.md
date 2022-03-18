@@ -1,6 +1,6 @@
-# Java Class list extractor 0.1.0, released 2022-??-??
+# Java Class list extractor 0.1.0, released 2022-03-18
 
-Code name:
+Code name: Initial Implementation
 
 ## Features
 
@@ -34,7 +34,7 @@ Code name:
 * Added `org.apache.maven.plugins:maven-clean-plugin:2.5`
 * Added `org.apache.maven.plugins:maven-compiler-plugin:3.9.0`
 * Added `org.apache.maven.plugins:maven-dependency-plugin:3.2.0`
-* Added `org.apache.maven.plugins:maven-deploy-plugin:2.7`
+* Added `org.apache.maven.plugins:maven-deploy-plugin:3.0.0-M2`
 * Added `org.apache.maven.plugins:maven-enforcer-plugin:3.0.0`
 * Added `org.apache.maven.plugins:maven-failsafe-plugin:3.0.0-M5`
 * Added `org.apache.maven.plugins:maven-install-plugin:2.4`
