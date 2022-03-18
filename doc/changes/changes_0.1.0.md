@@ -1,6 +1,6 @@
-# Java Class list extractor 0.1.0, released 2022-??-??
+# Java Class list extractor 0.1.0, released 2022-03-18
 
-Code name:
+Code name: Initial Implementation
 
 ## Features
 
