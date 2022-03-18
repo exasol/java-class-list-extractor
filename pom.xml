@@ -7,8 +7,8 @@
     <packaging>pom</packaging>
     <version>0.0.0</version>
     <modules>
-        <module>verifier</module>
         <module>agent</module>
+        <module>verifier</module>
     </modules>
     <name>Java Class list extractor (aggregator pom)</name>
     <build>

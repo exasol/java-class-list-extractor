@@ -52,9 +52,9 @@ class ClassListServer implements AutoCloseable {
      * {@link #clear()}.
      * </p>
      * 
-     * @return list of classes.
+     * @return loaded classes.
      */
-    public List<String> getClassList() {
+    public Set<String> getClassList() {
         return this.clientHandler.getClassList();
     }
 
@@ -96,13 +96,13 @@ class ClassListServer implements AutoCloseable {
             this.classListReaders.clear();
         }
 
-        List<String> getClassList() {
+        Set<String> getClassList() {
             final Set<String> union = new HashSet<>();
             waitForServerThreadToHandlePendingClients();
             for (final Future<List<String>> classListReader : this.classListReaders) {
                 union.addAll(getResult(classListReader));
             }
-            return new ArrayList<>(union);
+            return union;
         }
 
         private void waitForServerThreadToHandlePendingClients() {

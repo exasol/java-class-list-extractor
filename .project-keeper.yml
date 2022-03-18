@@ -10,6 +10,8 @@ sources:
     path: verifier/pom.xml
     modules:
       - lombok
+      - integration_tests
+      - maven_central
 version:
   fromSource: verifier/pom.xml
 
