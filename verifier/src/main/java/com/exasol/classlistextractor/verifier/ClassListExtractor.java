@@ -62,7 +62,7 @@ public class ClassListExtractor implements AutoCloseable {
         for (int run = 0; run < 5; run++) {
             classLists.add(recordClassLoading(runnable));
         }
-        // By building the intersection of multiple runs we make the result more stable since flanky classes are removed
+        // By building the intersection of multiple runs we make the result more stable since flaky classes are removed.
         return intersection(classLists);
     }
 
