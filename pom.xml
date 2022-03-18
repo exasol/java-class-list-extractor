@@ -6,6 +6,8 @@
     <artifactId>java-class-list-extractor-aggregator</artifactId>
     <packaging>pom</packaging>
     <version>0.0.0</version>
+    <url>https://github.com/exasol/java-class-list-extractor</url>
+    <description>Tool for extracting the used classes from Java UDF / Adapter Scripts.</description>
     <modules>
         <module>agent</module>
         <module>verifier</module>

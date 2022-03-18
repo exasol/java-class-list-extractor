@@ -7,6 +7,28 @@
     <version>0.1.0</version>
     <packaging>jar</packaging>
     <name>Class list verifier</name>
+    <description>Tool for extracting the used classes from Java UDF / Adapter Scripts.</description>
+    <licenses>
+        <license>
+            <name>MIT</name>
+            <url>https://opensource.org/licenses/MIT</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    <developers>
+        <developer>
+            <name>Exasol</name>
+            <email>opensource@exasol.com</email>
+            <organization>Exasol AG</organization>
+            <organizationUrl>https://www.exasol.com/</organizationUrl>
+        </developer>
+    </developers>
+    <scm>
+        <connection>scm:git:https://github.com/exasol/java-class-list-extractor.git</connection>
+        <developerConnection>scm:git:https://github.com/exasol/java-class-list-extractor.git</developerConnection>
+        <url>https://github.com/exasol/java-class-list-extractor/tree/master</url>
+    </scm>
+    <url>https://github.com/exasol/java-class-list-extractor</url>
     <dependencies>
         <dependency>
             <groupId>com.exasol</groupId>
