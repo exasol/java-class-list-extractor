@@ -9,8 +9,8 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
@@ -20,6 +20,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
+// [utest->dsn~class-list-verifier~1]
 class ClassListVerifierTest {
     @TempDir
     Path tempDir;
@@ -32,14 +33,22 @@ class ClassListVerifierTest {
     @Test
     void testWithValidJar() throws IOException {
         final Path jar = createJarFile(true);
-        assertDoesNotThrow(() -> new ClassListVerifier()
+        assertDoesNotThrow(() -> new ClassListVerifier(Collections.emptyList())
                 .verifyClassListFile(List.of("com/exasol/ExaMetadata", "com/exasol/Test"), jar));
+    }
+
+    @Test
+    // [utest->dsn-fuzzy-class-list-matching~1]
+    void testWithIgnoredDiff() throws IOException {
+        final Path jar = createJarFile(true);
+        assertDoesNotThrow(() -> new ClassListVerifier(List.of(Pattern.compile(Pattern.quote("com/exasol/Test"))))
+                .verifyClassListFile(List.of("com/exasol/ExaMetadata"), jar));
     }
 
     @Test
     void testWithOutdatedClassList() throws IOException {
         final Path jar = createJarFile(true);
-        final ClassListVerifier verifier = new ClassListVerifier();
+        final ClassListVerifier verifier = new ClassListVerifier(Collections.emptyList());
         final List<String> classList = List.of("com/exasol/ExaMetadata", "com/exasol/Other");
         final AssertionError exception = assertThrows(AssertionError.class,
                 () -> verifier.verifyClassListFile(classList, jar));
@@ -49,6 +58,18 @@ class ClassListVerifierTest {
                                 "You can fix that by copying the generated file from target/generated-classes.lst to src/main/resources/classes.lst: \ncp target/generated-classes.lst src/main/resources/classes.lst"))),
                 () -> assertGeneratedClassList(classList)//
         );
+    }
+
+    @Test
+    // [utest->dsn-fuzzy-class-list-matching~1]
+    void testWithOutdatedAndIgnoredDiff() throws IOException {
+        final Path jar = createJarFile(true);
+        final ClassListVerifier verifier = new ClassListVerifier(
+                List.of(Pattern.compile(Pattern.quote("com/exasol/Test"))));
+        final List<String> classList = List.of("com/exasol/Other");
+        final AssertionError exception = assertThrows(AssertionError.class,
+                () -> verifier.verifyClassListFile(classList, jar));
+        assertThat(exception.getMessage(), startsWith("E-JCLE-VF-16: Found outdated classes.lst in the jar file"));
     }
 
     private void assertGeneratedClassList(final List<String> classList) throws IOException {
@@ -61,7 +82,7 @@ class ClassListVerifierTest {
     @Test
     void testWithMissingClassList() throws IOException {
         final Path jar = createJarFile(false);
-        final ClassListVerifier verifier = new ClassListVerifier();
+        final ClassListVerifier verifier = new ClassListVerifier(Collections.emptyList());
         final List<String> classList = List.of("com/exasol/ExaMetadata", "com/exasol/Other");
         final AssertionError exception = assertThrows(AssertionError.class,
                 () -> verifier.verifyClassListFile(classList, jar));
@@ -76,7 +97,7 @@ class ClassListVerifierTest {
     @Test
     void testWithMissingJar() {
         final Path jar = this.tempDir.resolve("test.jar");
-        final ClassListVerifier verifier = new ClassListVerifier();
+        final ClassListVerifier verifier = new ClassListVerifier(Collections.emptyList());
         final List<String> classList = List.of("com/exasol/ExaMetadata", "com/exasol/Other");
         final AssertionError exception = assertThrows(AssertionError.class,
                 () -> verifier.verifyClassListFile(classList, jar));

@@ -67,3 +67,5 @@ If you've multiple queries that you want to optimize for, you can either run all
 
 * [Changelog](doc/changes/changelog.md)
 * [Dependencies](dependencies.md)
+* [Requirements](doc/requirements.md)
+* [Design](doc/design.md)
