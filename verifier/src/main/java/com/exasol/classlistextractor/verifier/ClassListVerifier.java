@@ -5,6 +5,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.*;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
@@ -15,8 +16,21 @@ import com.exasol.errorreporting.ExaError;
  * This class verifies that a jar file contains a {@code classes.lst} file and validates that it contains the expected
  * classes.
  */
+// [impl->dsn~class-list-verifier~1]
 public class ClassListVerifier {
+    private final List<Pattern> ignoreInDiffPattern;
+
     private static final String CLASSES_LIST_FILE_NAME = "classes.lst";
+
+    /**
+     * Create a new instance of {@link ClassListVerifier}.
+     * 
+     * @param ignoreInDiffPattern patterns that match class names that will be ignored when verifying the class list,
+     *                            e.g. {@code "/util/concurrent/.*"}.
+     */
+    public ClassListVerifier(final List<Pattern> ignoreInDiffPattern) {
+        this.ignoreInDiffPattern = ignoreInDiffPattern;
+    }
 
     /**
      * Verify that a jar file contains a {@code classes.lst} file and validates that it contains the expected classes.
@@ -36,7 +50,7 @@ public class ClassListVerifier {
         } else {
             final Set<String> classesInFile = Arrays.stream(classListFile.get().split("\n")).map(String::trim)
                     .collect(Collectors.toSet());
-            if (!classesInFile.equals(new HashSet<>(classList))) {
+            if (classListsAreDifferent(classList, classesInFile)) {
                 final Path generatedFilePath = writeClassListToTarget(classList);
                 throw new AssertionError(ExaError.messageBuilder("E-JCLE-VF-16")
                         .message("Found outdated " + CLASSES_LIST_FILE_NAME + " in the jar file {{jar file}}.", jarFile)
@@ -47,6 +61,17 @@ public class ClassListVerifier {
                         .parameter("generated class file path", generatedFilePath).toString());
             }
         }
+    }
+
+    private boolean classListsAreDifferent(final Collection<String> classList, final Set<String> classesInFile) {
+        return !applyIgnores(classesInFile).equals((applyIgnores(classList)));
+    }
+
+    // [impl->dsn-fuzzy-class-list-matching~1]
+    private Set<String> applyIgnores(final Collection<String> classList) {
+        return classList.stream().filter(
+                className -> this.ignoreInDiffPattern.stream().noneMatch(pattern -> pattern.matcher(className).find()))
+                .collect(Collectors.toSet());
     }
 
     private void handleEmptyClassList(final Collection<String> classList, final Path jarFile) {

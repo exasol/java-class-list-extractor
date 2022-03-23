@@ -56,6 +56,7 @@ public class ClassListExtractor implements AutoCloseable {
      * @param runnable function that performs the UDF call
      * @return list of captured classes
      */
+    // [impl->dsn~multiple-runs-for-more-stable-extraction~1]
     public List<String> capture(final CallbackWithQueryToScript runnable) {
         assertGetJvmOptionsWasCalled();
         final List<Set<String>> classLists = new ArrayList<>();
