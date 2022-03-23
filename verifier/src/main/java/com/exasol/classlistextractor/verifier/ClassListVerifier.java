@@ -25,7 +25,8 @@ public class ClassListVerifier {
     /**
      * Create a new instance of {@link ClassListVerifier}.
      * 
-     * @param ignoreInDiffPattern patterns that match class names that will be ignored when verifying the class list, e.g. {@code "/util/concurrent/.*"}.
+     * @param ignoreInDiffPattern patterns that match class names that will be ignored when verifying the class list,
+     *                            e.g. {@code "/util/concurrent/.*"}.
      */
     public ClassListVerifier(final List<Pattern> ignoreInDiffPattern) {
         this.ignoreInDiffPattern = ignoreInDiffPattern;
@@ -49,7 +50,7 @@ public class ClassListVerifier {
         } else {
             final Set<String> classesInFile = Arrays.stream(classListFile.get().split("\n")).map(String::trim)
                     .collect(Collectors.toSet());
-            if (!applyIgnores(classesInFile).equals((applyIgnores(classList)))) {
+            if (classListsAreDifferent(classList, classesInFile)) {
                 final Path generatedFilePath = writeClassListToTarget(classList);
                 throw new AssertionError(ExaError.messageBuilder("E-JCLE-VF-16")
                         .message("Found outdated " + CLASSES_LIST_FILE_NAME + " in the jar file {{jar file}}.", jarFile)
@@ -60,6 +61,10 @@ public class ClassListVerifier {
                         .parameter("generated class file path", generatedFilePath).toString());
             }
         }
+    }
+
+    private boolean classListsAreDifferent(final Collection<String> classList, final Set<String> classesInFile) {
+        return !applyIgnores(classesInFile).equals((applyIgnores(classList)));
     }
 
     // [impl->dsn-fuzzy-class-list-matching~1]
