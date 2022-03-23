@@ -25,7 +25,7 @@ public class ClassListVerifier {
     /**
      * Create a new instance of {@link ClassListVerifier}.
      * 
-     * @param ignoreInDiffPattern pattern that matches class names that will be ignored when verifying the class list.
+     * @param ignoreInDiffPattern patterns that match class names that will be ignored when verifying the class list, e.g. {@code "/util/concurrent/.*"}.
      */
     public ClassListVerifier(final List<Pattern> ignoreInDiffPattern) {
         this.ignoreInDiffPattern = ignoreInDiffPattern;
