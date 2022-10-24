@@ -57,8 +57,9 @@ public class ClassListVerifier {
                         .mitigation(
                                 "You can fix that by copying the generated file from {{generated class file path}} to 'src/main/resources/"
                                         + CLASSES_LIST_FILE_NAME
-                                        + "':\ncp {{generated class file path}} src/main/resources/classes.lst")
-                        .parameter("generated class file path", generatedFilePath).toString());
+                                        + "':\ncp {{generated class file path|u}} src/main/resources/classes.lst",
+                                generatedFilePath)
+                        .toString());
             }
         }
     }
@@ -81,8 +82,9 @@ public class ClassListVerifier {
                 .mitigation(
                         "You can fix that by copying the generated file from {{generated class file path}} to 'src/main/resources/"
                                 + CLASSES_LIST_FILE_NAME
-                                + "':\ncp {{generated class file path}} src/main/resources/classes.lst")
-                .parameter("generated class file path", generatedFilePath).toString());
+                                + "':\ncp {{generated class file path|u}} src/main/resources/classes.lst",
+                        generatedFilePath)
+                .toString());
     }
 
     private Path writeClassListToTarget(final Collection<String> classList) {
