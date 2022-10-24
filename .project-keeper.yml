@@ -9,7 +9,6 @@ sources:
   - type: maven
     path: verifier/pom.xml
     modules:
-      - lombok
       - integration_tests
       - maven_central
 version:

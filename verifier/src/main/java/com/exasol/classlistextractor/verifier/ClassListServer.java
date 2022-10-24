@@ -10,8 +10,6 @@ import java.util.logging.Logger;
 
 import com.exasol.errorreporting.ExaError;
 
-import lombok.Getter;
-
 /**
  * This class receives the class list from the agent running in the UDFs via TCP.
  */
@@ -64,7 +62,6 @@ class ClassListServer implements AutoCloseable {
         private final ServerSocket serverSocket;
         private final AtomicBoolean isRunning = new AtomicBoolean(true);
         private final ConcurrentLinkedQueue<Future<List<String>>> classListReaders = new ConcurrentLinkedQueue<>();
-        @Getter
         private final int port;
         private final ServerThreadMonitor serverThreadMonitor = new ServerThreadMonitor();
 
@@ -81,6 +78,10 @@ class ClassListServer implements AutoCloseable {
             }
             final Thread thread = new Thread(this);
             thread.start();
+        }
+
+        int getPort() {
+            return port;
         }
 
         void stop() {
@@ -176,8 +177,11 @@ class ClassListServer implements AutoCloseable {
         }
 
         private static class ServerThreadMonitor {
-            @Getter
             private boolean noMoreClients = false;
+
+            public boolean isNoMoreClients() {
+                return noMoreClients;
+            }
 
             public void setNoMoreClients() {
                 this.noMoreClients = true;
