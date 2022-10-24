@@ -58,7 +58,7 @@ public class ClassListVerifier {
                                 "You can fix that by copying the generated file from {{generated class file path}} to 'src/main/resources/"
                                         + CLASSES_LIST_FILE_NAME
                                         + "':\ncp {{generated class file path|u}} src/main/resources/classes.lst",
-                                generatedFilePath)
+                                generatedFilePath, generatedFilePath)
                         .toString());
             }
         }
@@ -83,7 +83,7 @@ public class ClassListVerifier {
                         "You can fix that by copying the generated file from {{generated class file path}} to 'src/main/resources/"
                                 + CLASSES_LIST_FILE_NAME
                                 + "':\ncp {{generated class file path|u}} src/main/resources/classes.lst",
-                        generatedFilePath)
+                        generatedFilePath, generatedFilePath)
                 .toString());
     }
 
