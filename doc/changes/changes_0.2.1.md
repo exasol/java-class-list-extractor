@@ -16,7 +16,7 @@ In this release we fixed vulnerabilities in the following test dependencies:
 
 ## Bugfixes
 
-* #10: Fix vulnerabilities in dependencies
+* #10: Fixed vulnerabilities in dependencies
 
 ## Dependency Updates
 
