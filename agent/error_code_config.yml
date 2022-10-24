@@ -2,4 +2,4 @@ error-tags:
   JCLE-AG:
     packages:
       - com.exasol.classlistextractor.agent
-    highest-index: 2
+    highest-index: 3

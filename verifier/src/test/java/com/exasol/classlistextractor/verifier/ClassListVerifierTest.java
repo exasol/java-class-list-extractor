@@ -55,7 +55,7 @@ class ClassListVerifierTest {
         assertAll(//
                 () -> assertThat(exception.getMessage(),
                         Matchers.allOf(startsWith("E-JCLE-VF-16: Found outdated classes.lst in the jar file"), endsWith(
-                                "You can fix that by copying the generated file from target/generated-classes.lst to src/main/resources/classes.lst: \ncp target/generated-classes.lst src/main/resources/classes.lst"))),
+                                "You can fix that by copying the generated file from 'target/generated-classes.lst' to 'src/main/resources/classes.lst':\ncp target/generated-classes.lst src/main/resources/classes.lst"))),
                 () -> assertGeneratedClassList(classList)//
         );
     }
@@ -89,7 +89,7 @@ class ClassListVerifierTest {
         assertAll(//
                 () -> assertThat(exception.getMessage(),
                         Matchers.allOf(startsWith("E-JCLE-VF-14: Could not find classes.lst in the jar file"), endsWith(
-                                "You can fix that by copying the generated file from target/generated-classes.lst to src/main/resources/classes.lst: \ncp target/generated-classes.lst src/main/resources/classes.lst"))),
+                                "You can fix that by copying the generated file from 'target/generated-classes.lst' to 'src/main/resources/classes.lst':\ncp target/generated-classes.lst src/main/resources/classes.lst"))),
                 () -> assertGeneratedClassList(classList)//
         );
     }
