@@ -55,10 +55,11 @@ public class ClassListVerifier {
                 throw new AssertionError(ExaError.messageBuilder("E-JCLE-VF-16")
                         .message("Found outdated " + CLASSES_LIST_FILE_NAME + " in the jar file {{jar file}}.", jarFile)
                         .mitigation(
-                                "You can fix that by copying the generated file from {{generated class file path}} to src/main/resources/"
+                                "You can fix that by copying the generated file from {{generated class file path}} to 'src/main/resources/"
                                         + CLASSES_LIST_FILE_NAME
-                                        + ": \ncp {{generated class file path|uq}} src/main/resources/classes.lst")
-                        .parameter("generated class file path", generatedFilePath).toString());
+                                        + "':\ncp {{generated class file path|u}} src/main/resources/classes.lst",
+                                generatedFilePath, generatedFilePath)
+                        .toString());
             }
         }
     }
@@ -79,10 +80,11 @@ public class ClassListVerifier {
         throw new AssertionError(ExaError.messageBuilder("E-JCLE-VF-14")
                 .message("Could not find " + CLASSES_LIST_FILE_NAME + " in the jar file {{jar file}}.", jarFile)
                 .mitigation(
-                        "You can fix that by copying the generated file from {{generated class file path}} to src/main/resources/"
+                        "You can fix that by copying the generated file from {{generated class file path}} to 'src/main/resources/"
                                 + CLASSES_LIST_FILE_NAME
-                                + ": \ncp {{generated class file path|uq}} src/main/resources/classes.lst")
-                .parameter("generated class file path", generatedFilePath).toString());
+                                + "':\ncp {{generated class file path|u}} src/main/resources/classes.lst",
+                        generatedFilePath, generatedFilePath)
+                .toString());
     }
 
     private Path writeClassListToTarget(final Collection<String> classList) {

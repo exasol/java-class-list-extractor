@@ -6,15 +6,15 @@ import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.logging.Logger;
 
 import com.exasol.errorreporting.ExaError;
-
-import lombok.Getter;
 
 /**
  * This class receives the class list from the agent running in the UDFs via TCP.
  */
 class ClassListServer implements AutoCloseable {
+    private static final Logger LOGGER = Logger.getLogger(ClassListServer.class.getName());
     private final ClientHandler clientHandler;
 
     /**
@@ -62,7 +62,6 @@ class ClassListServer implements AutoCloseable {
         private final ServerSocket serverSocket;
         private final AtomicBoolean isRunning = new AtomicBoolean(true);
         private final ConcurrentLinkedQueue<Future<List<String>>> classListReaders = new ConcurrentLinkedQueue<>();
-        @Getter
         private final int port;
         private final ServerThreadMonitor serverThreadMonitor = new ServerThreadMonitor();
 
@@ -71,6 +70,7 @@ class ClassListServer implements AutoCloseable {
                 this.serverSocket = new ServerSocket(0);
                 this.serverSocket.setSoTimeout(50);
                 this.port = this.serverSocket.getLocalPort();
+                LOGGER.fine(() -> "Started class list server on port " + this.port);
             } catch (final IOException exception) {
                 throw new UncheckedIOException(ExaError.messageBuilder("E-JCLE-VF-3")
                         .message("Failed to start a server for retrieving the class lists of a project.").toString(),
@@ -78,6 +78,10 @@ class ClassListServer implements AutoCloseable {
             }
             final Thread thread = new Thread(this);
             thread.start();
+        }
+
+        int getPort() {
+            return port;
         }
 
         void stop() {
@@ -107,8 +111,8 @@ class ClassListServer implements AutoCloseable {
 
         private void waitForServerThreadToHandlePendingClients() {
             synchronized (this.serverThreadMonitor) {
-                this.serverThreadMonitor.resetNoMoreClients();
-                while (!this.serverThreadMonitor.isNoMoreClients()) {
+                this.serverThreadMonitor.resetAcceptClients();
+                while (this.serverThreadMonitor.moreClientsAvailable()) {
                     try {
                         this.serverThreadMonitor.wait();
                     } catch (final InterruptedException exception) {
@@ -141,6 +145,8 @@ class ClassListServer implements AutoCloseable {
             while (this.isRunning.get()) {
                 try {
                     final Socket client = this.serverSocket.accept();
+                    LOGGER.fine(
+                            () -> "Client connected from " + client.getInetAddress() + " at port " + client.getPort());
                     final CompletableFuture<List<String>> future = new CompletableFuture<List<String>>()
                             .completeAsync(() -> readFromClientBlocking(client));
                     this.classListReaders.add(future);
@@ -161,7 +167,9 @@ class ClassListServer implements AutoCloseable {
         private List<String> readFromClientBlocking(final Socket client) {
             try (final InputStream inputStream = client.getInputStream()) {
                 final String classList = new String(inputStream.readAllBytes(), StandardCharsets.UTF_8);
-                return Arrays.asList(classList.split("\n"));
+                final List<String> classNames = Arrays.asList(classList.split("\n"));
+                LOGGER.fine(() -> "Read " + classNames.size() + " class name from client");
+                return classNames;
             } catch (final IOException exception) {
                 throw new UncheckedIOException(ExaError.messageBuilder("E-JCLE-VF-5")
                         .message("Failed to read from class list client.").toString(), exception);
@@ -169,15 +177,18 @@ class ClassListServer implements AutoCloseable {
         }
 
         private static class ServerThreadMonitor {
-            @Getter
-            private boolean noMoreClients = false;
+            private boolean acceptClients = true;
 
-            public void setNoMoreClients() {
-                this.noMoreClients = true;
+            boolean moreClientsAvailable() {
+                return acceptClients;
             }
 
-            public void resetNoMoreClients() {
-                this.noMoreClients = false;
+            void setNoMoreClients() {
+                this.acceptClients = false;
+            }
+
+            void resetAcceptClients() {
+                this.acceptClients = true;
             }
         }
     }

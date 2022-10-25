@@ -9,9 +9,10 @@ sources:
   - type: maven
     path: verifier/pom.xml
     modules:
-      - lombok
       - integration_tests
       - maven_central
 version:
   fromSource: verifier/pom.xml
-
+excludes:
+  - "E-PK-CORE-17: Missing required file: '.github/workflows/project-keeper-verify.yml'"
+  - "E-PK-CORE-17: Missing required file: '.github/workflows/project-keeper.sh'"
