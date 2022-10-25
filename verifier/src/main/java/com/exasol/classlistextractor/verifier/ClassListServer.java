@@ -111,8 +111,8 @@ class ClassListServer implements AutoCloseable {
 
         private void waitForServerThreadToHandlePendingClients() {
             synchronized (this.serverThreadMonitor) {
-                this.serverThreadMonitor.resetNoMoreClients();
-                while (!this.serverThreadMonitor.isNoMoreClients()) {
+                this.serverThreadMonitor.resetAcceptClients();
+                while (this.serverThreadMonitor.moreClientsAvailable()) {
                     try {
                         this.serverThreadMonitor.wait();
                     } catch (final InterruptedException exception) {
@@ -177,18 +177,18 @@ class ClassListServer implements AutoCloseable {
         }
 
         private static class ServerThreadMonitor {
-            private boolean noMoreClients = false;
+            private boolean acceptClients = true;
 
-            public boolean isNoMoreClients() {
-                return noMoreClients;
+            boolean moreClientsAvailable() {
+                return acceptClients;
             }
 
-            public void setNoMoreClients() {
-                this.noMoreClients = true;
+            void setNoMoreClients() {
+                this.acceptClients = false;
             }
 
-            public void resetNoMoreClients() {
-                this.noMoreClients = false;
+            void resetAcceptClients() {
+                this.acceptClients = true;
             }
         }
     }
