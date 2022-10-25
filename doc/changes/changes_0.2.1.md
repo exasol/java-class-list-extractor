@@ -1,4 +1,4 @@
-# Java Class List Extractor 0.2.1, released 2022-10-24
+# Java Class List Extractor 0.2.1, released 2022-10-25
 
 Code name: Fix vulnerabilities in dependencies
 
