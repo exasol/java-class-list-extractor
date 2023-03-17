@@ -20,11 +20,11 @@ The class list determines which classes will be preloaded. This can reduce the s
 
 * Add this project as maven test dependency.
 * Create a ClassListExtractor:
-    ```
+    ```java
     final ClassListExtractor extractor = new ClassListExtractor(EXASOL.getDefaultBucket(), port -> new InetSocketAddress(EXASOL.getHostIp() + "", port));
     ```
 * Make sure that you close the extractor. For example in `afterAll()` if you created it in `beforeAll()`:
-  ```
+  ```java
   @AfterAll
   static void afterAll() throws SQLException {
     statement.close();
@@ -35,19 +35,19 @@ The class list determines which classes will be preloaded. This can reduce the s
 * Add the JVM options provided by `extractor.getJvmOptions()` to your UDF or Adapter Script definitions.
 
   If you use the [test-db-builder-java](https://github.com/exasol/test-db-builder-java), you can use the following snippet:
-  ```
+  ```java
   final ExasolObjectFactory objectFactory = new ExasolObjectFactory(connection,
      ExasolObjectConfiguration.builder().withJvmOptions(extractor.getJvmOptions()).build());
   ```
   If you also use [udf-debugging-java](https://github.com/exasol/udf-debugging-java/), use:
-  ```
+  ```java
   final List<String> jvmOptions = new ArrayList<>(Arrays.asList(udfTestSetup.getJvmOptions()));
   jvmOptions.addAll(Arrays.asList(extractor.getJvmOptions()));
   final ExasolObjectFactory objectFactory = new ExasolObjectFactory(connection,
          ExasolObjectConfiguration.builder().withJvmOptions(jvmOptions.toArray(String[]::new)).build());
   ```
 * Run the queries you want to optimize inside of `extractor.capture()`:
-  ```
+  ```java
   final List<String> classList = extractor.capture(() -> {
      try (final ResultSet result = statement.executeQuery("SELECT TEST.MY_UDF() AS RES")) {
        result.next();
@@ -56,7 +56,7 @@ The class list determines which classes will be preloaded. This can reduce the s
   });
   ```
 * Add the verifier:
-  ```
+  ```java
   new ClassListVerifier()
     .verifyClassListFile(classList, Path.of("target/my-app.jar"));
   ```
