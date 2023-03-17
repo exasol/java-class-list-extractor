@@ -54,6 +54,7 @@ This release removes references to the outdated `maven.exasol.com` repository.
 * Updated `org.junit.jupiter:junit-jupiter-api:5.9.1` to `5.9.2`
 * Updated `org.junit.jupiter:junit-jupiter-params:5.9.1` to `5.9.2`
 * Updated `org.mockito:mockito-junit-jupiter:4.8.1` to `5.2.0`
+* Added `org.slf4j:slf4j-jdk14:2.0.6`
 * Updated `org.testcontainers:junit-jupiter:1.17.5` to `1.17.6`
 
 #### Plugin Dependency Updates
