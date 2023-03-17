@@ -20,3 +20,9 @@ pom.xml.versionsBackup
 *.old
 *.md.html
 *.flattened-pom.xml
+/agent/.settings/org.eclipse.core.resources.prefs
+/agent/.settings/org.eclipse.jdt.apt.core.prefs
+/agent/.settings/org.eclipse.m2e.core.prefs
+/verifier/.settings/org.eclipse.core.resources.prefs
+/verifier/.settings/org.eclipse.jdt.apt.core.prefs
+/verifier/.settings/org.eclipse.m2e.core.prefs
