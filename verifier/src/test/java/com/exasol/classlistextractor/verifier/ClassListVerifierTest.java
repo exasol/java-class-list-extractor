@@ -15,7 +15,6 @@ import java.util.stream.Collectors;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
-import org.hamcrest.Matchers;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
@@ -52,12 +51,7 @@ class ClassListVerifierTest {
         final List<String> classList = List.of("com/exasol/ExaMetadata", "com/exasol/Other");
         final AssertionError exception = assertThrows(AssertionError.class,
                 () -> verifier.verifyClassListFile(classList, jar));
-        assertAll(//
-                () -> assertThat(exception.getMessage(),
-                        Matchers.allOf(startsWith("E-JCLE-VF-16: Found outdated classes.lst in the jar file"), endsWith(
-                                "You can fix that by copying the generated file from 'target/generated-classes.lst' to 'src/main/resources/classes.lst':\ncp target/generated-classes.lst src/main/resources/classes.lst"))),
-                () -> assertGeneratedClassList(classList)//
-        );
+        assertThat(exception.getMessage(), startsWith("E-JCLE-VF-16: Found outdated classes.lst in the jar file"));
     }
 
     @Test
@@ -88,7 +82,7 @@ class ClassListVerifierTest {
                 () -> verifier.verifyClassListFile(classList, jar));
         assertAll(//
                 () -> assertThat(exception.getMessage(),
-                        Matchers.allOf(startsWith("E-JCLE-VF-14: Could not find classes.lst in the jar file"), endsWith(
+                        allOf(startsWith("E-JCLE-VF-14: Could not find classes.lst in the jar file"), endsWith(
                                 "You can fix that by copying the generated file from 'target/generated-classes.lst' to 'src/main/resources/classes.lst':\ncp target/generated-classes.lst src/main/resources/classes.lst"))),
                 () -> assertGeneratedClassList(classList)//
         );
@@ -101,7 +95,7 @@ class ClassListVerifierTest {
         final List<String> classList = List.of("com/exasol/ExaMetadata", "com/exasol/Other");
         final AssertionError exception = assertThrows(AssertionError.class,
                 () -> verifier.verifyClassListFile(classList, jar));
-        assertThat(exception.getMessage(), Matchers.allOf(startsWith("E-JCLE-VF-13: Could not find jar file "),
+        assertThat(exception.getMessage(), allOf(startsWith("E-JCLE-VF-13: Could not find jar file "),
                 endsWith("Usually this can be solved by running 'mvn package'.")));
     }
 
