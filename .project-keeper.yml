@@ -16,4 +16,3 @@ version:
 excludes:
   - "E-PK-CORE-17: Missing required file: '.github/workflows/project-keeper-verify.yml'"
   - "E-PK-CORE-17: Missing required file: '.github/workflows/project-keeper.sh'"
-  - regex: "E-PK-CORE-53: The dependencies.md file has outdated content.*"

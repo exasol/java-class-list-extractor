@@ -51,14 +51,12 @@ public class ClassListVerifier {
             final Set<String> classesInFile = Arrays.stream(classListFile.get().split("\n")).map(String::trim)
                     .collect(Collectors.toSet());
             if (classListsAreDifferent(classList, classesInFile)) {
-                final Path generatedFilePath = writeClassListToTarget(classList);
                 throw new AssertionError(ExaError.messageBuilder("E-JCLE-VF-16")
                         .message("Found outdated " + CLASSES_LIST_FILE_NAME + " in the jar file {{jar file}}.", jarFile)
                         .mitigation(
-                                "You can fix that by copying the generated file from {{generated class file path}} to 'src/main/resources/"
-                                        + CLASSES_LIST_FILE_NAME
-                                        + "':\ncp {{generated class file path|u}} src/main/resources/classes.lst")
-                        .parameter("generated class file path", generatedFilePath).toString());
+                                "You can fix that by downloading the generated file target/generated-classes.lst from the GitHub action summary and copy it to to 'src/main/resources/"
+                                        + CLASSES_LIST_FILE_NAME + "'")
+                        .toString());
             }
         }
     }
