@@ -1,4 +1,4 @@
-# Java Class List Extractor 0.2.3, released 2023-08-02
+# Java Class List Extractor 0.2.3, released 2023-08-03
 
 Code name: Improve error message
 
