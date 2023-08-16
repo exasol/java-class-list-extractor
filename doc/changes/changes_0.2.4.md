@@ -1,4 +1,4 @@
-# Java Class List Extractor 0.2.4, released 2023-08-16
+# Java Class List Extractor 0.2.4, released 2023-08-17
 
 Code name: Write Class List to File
 
