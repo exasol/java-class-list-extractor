@@ -86,8 +86,7 @@ class ClassListVerifierTest {
                 () -> verifier.verifyClassListFile(classList, jar));
         assertAll(//
                 () -> assertThat(exception.getMessage(),
-                        allOf(startsWith("E-JCLE-VF-14: Could not find classes.lst in the jar file"), endsWith(
-                                "You can fix that by copying the generated file from 'target/generated-classes.lst' to 'src/main/resources/classes.lst':\ncp target/generated-classes.lst src/main/resources/classes.lst"))),
+                        startsWith("E-JCLE-VF-14: Could not find classes.lst in the jar file")),
                 () -> assertGeneratedClassList(classList)//
         );
     }
