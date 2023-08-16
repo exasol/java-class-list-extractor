@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.exasol</groupId>
     <artifactId>java-class-list-verifier</artifactId>
-    <version>0.2.3</version>
+    <version>0.2.4</version>
     <packaging>jar</packaging>
     <name>Class list verifier</name>
     <description>Tool for extracting the used classes from Java UDF / Adapter Scripts.</description>
