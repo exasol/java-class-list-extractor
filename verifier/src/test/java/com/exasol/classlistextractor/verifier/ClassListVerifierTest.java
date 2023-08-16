@@ -51,7 +51,11 @@ class ClassListVerifierTest {
         final List<String> classList = List.of("com/exasol/ExaMetadata", "com/exasol/Other");
         final AssertionError exception = assertThrows(AssertionError.class,
                 () -> verifier.verifyClassListFile(classList, jar));
-        assertThat(exception.getMessage(), startsWith("E-JCLE-VF-16: Found outdated classes.lst in the jar file"));
+        assertAll(//
+                () -> assertThat(exception.getMessage(),
+                        allOf(startsWith("E-JCLE-VF-16: Found outdated classes.lst in the jar file"))),
+                () -> assertGeneratedClassList(classList)//
+        );
     }
 
     @Test
