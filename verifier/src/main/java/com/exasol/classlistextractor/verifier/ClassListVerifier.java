@@ -5,6 +5,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.*;
+import java.util.logging.Logger;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.zip.ZipEntry;
@@ -18,9 +19,10 @@ import com.exasol.errorreporting.ExaError;
  */
 // [impl->dsn~class-list-verifier~1]
 public class ClassListVerifier {
-    private final List<Pattern> ignoreInDiffPattern;
-
+    private static final Logger LOGGER = Logger.getLogger(ClassListVerifier.class.getName());
     private static final String CLASSES_LIST_FILE_NAME = "classes.lst";
+
+    private final List<Pattern> ignoreInDiffPattern;
 
     /**
      * Create a new instance of {@link ClassListVerifier}.
@@ -48,6 +50,8 @@ public class ClassListVerifier {
         if (classListFile.isEmpty()) {
             handleEmptyClassList(classList, jarFile);
         } else {
+            final Path generatedFilePath = writeClassListToTarget(classList);
+            LOGGER.info(() -> "Wrote generated class list to " + generatedFilePath);
             final Set<String> classesInFile = Arrays.stream(classListFile.get().split("\n")).map(String::trim)
                     .collect(Collectors.toSet());
             if (classListsAreDifferent(classList, classesInFile)) {
@@ -84,7 +88,7 @@ public class ClassListVerifier {
     }
 
     private Path writeClassListToTarget(final Collection<String> classList) {
-        final Path generatedFilePath = Path.of("target/generated-" + CLASSES_LIST_FILE_NAME);
+        final Path generatedFilePath = Path.of("target/generated-" + CLASSES_LIST_FILE_NAME).toAbsolutePath();
         try {
             Files.writeString(generatedFilePath, String.join(System.lineSeparator(), classList));
             return generatedFilePath;
