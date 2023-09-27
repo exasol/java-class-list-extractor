@@ -1,12 +1,14 @@
-# Java Class List Extractor 0.2.5, released 2023-??-??
+# Java Class List Extractor 0.2.5, released 2023-09-27
 
-Code name:
+Code name: Fix CVE-2023-42503
 
 ## Summary
 
-## Features
+This release fixes CVE-2023-42503 in `org.apache.commons:commons-compress`
 
-* ISSUE_NUMBER: description
+## Security
+
+* #20: Fixed CVE-2023-42503 in `org.apache.commons:commons-compress`
 
 ## Dependency Updates
 
