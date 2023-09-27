@@ -61,7 +61,7 @@
 | [JUnit Jupiter API][2]                          | [Eclipse Public License v2.0][3] |
 | [JUnit Jupiter Params][2]                       | [Eclipse Public License v2.0][3] |
 | [Hamcrest][4]                                   | [BSD License 3][5]               |
-| [SLF4J JDK14 Binding][39]                       | [MIT License][40]                |
+| [SLF4J JDK14 Provider][39]                      | [MIT License][40]                |
 | [Testcontainers :: JUnit Jupiter Extension][41] | [MIT][42]                        |
 | [Test containers for Exasol on Docker][43]      | [MIT License][44]                |
 | [Test Database Builder for Java][45]            | [MIT License][46]                |
@@ -137,7 +137,7 @@
 [38]: https://github.com/exasol/bucketfs-java/blob/main/LICENSE
 [39]: http://www.slf4j.org
 [40]: http://www.opensource.org/licenses/mit-license.php
-[41]: https://testcontainers.org
+[41]: https://java.testcontainers.org
 [42]: http://opensource.org/licenses/MIT
 [43]: https://github.com/exasol/exasol-testcontainers/
 [44]: https://github.com/exasol/exasol-testcontainers/blob/main/LICENSE
