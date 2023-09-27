@@ -3,8 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.exasol</groupId>
     <artifactId>java-class-list-extractor-agent</artifactId>
-    <version>0.0.0</version>
-    <!-- no own version since only deployed as resource -->
+    <version>0.0.0</version><!-- no own version since only deployed as resource -->
     <packaging>jar</packaging>
     <name>Class list extractor agent</name>
     <description>Class list extractor agent</description>
