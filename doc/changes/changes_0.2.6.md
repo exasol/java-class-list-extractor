@@ -1,12 +1,14 @@
-# Java Class List Extractor 0.2.6, released 2024-??-??
+# Java Class List Extractor 0.2.6, released 2024-03-04
 
-Code name:
+Code name: Fix CVE-2024-25710 and CVE-2024-26308 in test dependency `org.apache.commons:commons-compress`
 
 ## Summary
 
-## Features
+This release fixes vulnerabilities CVE-2024-25710 and CVE-2024-26308 in test dependency `org.apache.commons:commons-compress`.
 
-* #23: description
+## Security
+
+* #23: Fixed CVE-2024-25710 and CVE-2024-26308 in test dependency `org.apache.commons:commons-compress`
 
 ## Dependency Updates
 
