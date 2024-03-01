@@ -15,3 +15,8 @@ sources:
       - maven_central
 version:
   fromSource: verifier/pom.xml
+build:
+  runnerOs: ubuntu-20.04
+  exasolDbVersions:
+    - "8.25.0"
+    - "7.1.25"
