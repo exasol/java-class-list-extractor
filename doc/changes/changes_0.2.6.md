@@ -1,14 +1,12 @@
-# Java Class List Extractor 0.2.5, released 2023-09-27
+# Java Class List Extractor 0.2.6, released 2024-??-??
 
-Code name: Fix CVE-2023-42503
+Code name:
 
 ## Summary
 
-This release fixes CVE-2023-42503 in `org.apache.commons:commons-compress`
+## Features
 
-## Security
-
-* #20: Fixed CVE-2023-42503 in `org.apache.commons:commons-compress`
+* ISSUE_NUMBER: description
 
 ## Dependency Updates
 
@@ -39,25 +37,24 @@ This release fixes CVE-2023-42503 in `org.apache.commons:commons-compress`
 
 #### Compile Dependency Updates
 
-* Updated `com.exasol:bucketfs-java:3.1.0` to `3.1.2`
+* Updated `com.exasol:bucketfs-java:3.1.1` to `3.1.2`
 
 #### Test Dependency Updates
 
-* Updated `com.exasol:exasol-testcontainers:6.6.1` to `7.0.1`
-* Updated `com.exasol:test-db-builder-java:3.4.2` to `3.5.3`
-* Updated `com.exasol:udf-debugging-java:0.6.10` to `0.6.11`
+* Updated `com.exasol:exasol-testcontainers:6.6.2` to `7.0.1`
+* Updated `com.exasol:test-db-builder-java:3.5.1` to `3.5.3`
 * Updated `org.junit.jupiter:junit-jupiter-api:5.10.0` to `5.10.2`
 * Updated `org.junit.jupiter:junit-jupiter-params:5.10.0` to `5.10.2`
-* Updated `org.mockito:mockito-junit-jupiter:5.4.0` to `5.10.0`
-* Updated `org.slf4j:slf4j-jdk14:2.0.7` to `2.0.12`
-* Updated `org.testcontainers:junit-jupiter:1.18.3` to `1.19.6`
+* Updated `org.mockito:mockito-junit-jupiter:5.5.0` to `5.10.0`
+* Updated `org.slf4j:slf4j-jdk14:2.0.9` to `2.0.12`
+* Updated `org.testcontainers:junit-jupiter:1.19.0` to `1.19.6`
 
 #### Plugin Dependency Updates
 
 * Updated `com.exasol:error-code-crawler-maven-plugin:1.3.0` to `2.0.0`
-* Updated `com.exasol:project-keeper-maven-plugin:2.9.10` to `4.1.0`
+* Updated `com.exasol:project-keeper-maven-plugin:2.9.12` to `4.1.0`
 * Updated `org.apache.maven.plugins:maven-compiler-plugin:3.11.0` to `3.12.1`
-* Updated `org.apache.maven.plugins:maven-enforcer-plugin:3.3.0` to `3.4.1`
+* Updated `org.apache.maven.plugins:maven-enforcer-plugin:3.4.0` to `3.4.1`
 * Updated `org.apache.maven.plugins:maven-failsafe-plugin:3.1.2` to `3.2.5`
 * Updated `org.apache.maven.plugins:maven-javadoc-plugin:3.5.0` to `3.6.3`
 * Updated `org.apache.maven.plugins:maven-surefire-plugin:3.1.2` to `3.2.5`
