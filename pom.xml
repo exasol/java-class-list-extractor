@@ -63,4 +63,10 @@
             </plugin>
         </plugins>
     </build>
+    <parent>
+        <artifactId>java-class-list-extractor-aggregator-generated-parent</artifactId>
+        <groupId>com.exasol</groupId>
+        <version>0.0.0</version>
+        <relativePath>pk_generated_parent.pom</relativePath>
+    </parent>
 </project>

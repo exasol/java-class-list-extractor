@@ -3,6 +3,18 @@
 [![Build Status](https://github.com/exasol/java-class-list-extractor/actions/workflows/ci-build.yml/badge.svg)](https://github.com/exasol/java-class-list-extractor/actions/workflows/ci-build.yml)
 [![Maven Central &ndash; Class list verifier](https://img.shields.io/maven-central/v/com.exasol/java-class-list-verifier)](https://search.maven.org/artifact/com.exasol/java-class-list-verifier)
 
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=com.exasol%3Ajava-class-list-extractor-aggregator&metric=alert_status)](https://sonarcloud.io/dashboard?id=com.exasol%3Ajava-class-list-extractor-aggregator)
+
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=com.exasol%3Ajava-class-list-extractor-aggregator&metric=security_rating)](https://sonarcloud.io/dashboard?id=com.exasol%3Ajava-class-list-extractor-aggregator)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=com.exasol%3Ajava-class-list-extractor-aggregator&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=com.exasol%3Ajava-class-list-extractor-aggregator)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=com.exasol%3Ajava-class-list-extractor-aggregator&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=com.exasol%3Ajava-class-list-extractor-aggregator)
+[![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=com.exasol%3Ajava-class-list-extractor-aggregator&metric=sqale_index)](https://sonarcloud.io/dashboard?id=com.exasol%3Ajava-class-list-extractor-aggregator)
+
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=com.exasol%3Ajava-class-list-extractor-aggregator&metric=code_smells)](https://sonarcloud.io/dashboard?id=com.exasol%3Ajava-class-list-extractor-aggregator)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=com.exasol%3Ajava-class-list-extractor-aggregator&metric=coverage)](https://sonarcloud.io/dashboard?id=com.exasol%3Ajava-class-list-extractor-aggregator)
+[![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=com.exasol%3Ajava-class-list-extractor-aggregator&metric=duplicated_lines_density)](https://sonarcloud.io/dashboard?id=com.exasol%3Ajava-class-list-extractor-aggregator)
+[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=com.exasol%3Ajava-class-list-extractor-aggregator&metric=ncloc)](https://sonarcloud.io/dashboard?id=com.exasol%3Ajava-class-list-extractor-aggregator)
+
 The Java Class List Extractor is a tool that helps you to capture a list of loaded classed from Java UDFs / AdapterScripts in an Exasol database. The class list is required for improving the start-up performance of Java UDF using [java-udf-startup-time-improver](https://github.com/exasol/java-udf-startup-time-improver/).
 
 This tool consists of two parts:

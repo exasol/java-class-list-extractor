@@ -6,9 +6,28 @@ Code name:
 
 ## Features
 
-* ISSUE_NUMBER: description
+* #23: description
 
 ## Dependency Updates
+
+### Java Class List Extractor (aggregator Pom)
+
+#### Plugin Dependency Updates
+
+* Updated `com.exasol:error-code-crawler-maven-plugin:1.3.0` to `2.0.1`
+* Updated `com.exasol:project-keeper-maven-plugin:2.9.12` to `4.1.0`
+* Added `io.github.zlika:reproducible-build-maven-plugin:0.16`
+* Added `org.apache.maven.plugins:maven-compiler-plugin:3.12.1`
+* Added `org.apache.maven.plugins:maven-enforcer-plugin:3.4.1`
+* Added `org.apache.maven.plugins:maven-surefire-plugin:3.2.5`
+* Added `org.apache.maven.plugins:maven-toolchains-plugin:3.1.0`
+* Added `org.basepom.maven:duplicate-finder-maven-plugin:2.0.1`
+* Added `org.codehaus.mojo:flatten-maven-plugin:1.6.0`
+* Added `org.codehaus.mojo:versions-maven-plugin:2.16.2`
+* Updated `org.itsallcode:openfasttrace-maven-plugin:1.6.1` to `1.8.0`
+* Added `org.jacoco:jacoco-maven-plugin:0.8.11`
+* Added `org.sonarsource.scanner.maven:sonar-maven-plugin:3.10.0.2594`
+* Added `org.sonatype.ossindex.maven:ossindex-maven-plugin:3.2.0`
 
 ### Class List Extractor Agent
 

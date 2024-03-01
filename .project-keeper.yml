@@ -1,5 +1,7 @@
 sources:
   - type: maven
+    path: pom.xml
+  - type: maven
     path: agent/pom.xml
     modules:
       - jar_artifact
@@ -13,6 +15,3 @@ sources:
       - maven_central
 version:
   fromSource: verifier/pom.xml
-excludes:
-  - "E-PK-CORE-17: Missing required file: '.github/workflows/project-keeper-verify.yml'"
-  - "E-PK-CORE-17: Missing required file: '.github/workflows/project-keeper.sh'"
