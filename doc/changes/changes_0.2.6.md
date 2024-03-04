@@ -21,6 +21,9 @@ This release fixes vulnerabilities CVE-2024-25710 and CVE-2024-26308 in test dep
 * Added `io.github.zlika:reproducible-build-maven-plugin:0.16`
 * Added `org.apache.maven.plugins:maven-compiler-plugin:3.12.1`
 * Added `org.apache.maven.plugins:maven-enforcer-plugin:3.4.1`
+* Added `org.apache.maven.plugins:maven-gpg-plugin:3.1.0`
+* Added `org.apache.maven.plugins:maven-javadoc-plugin:3.6.3`
+* Added `org.apache.maven.plugins:maven-source-plugin:3.2.1`
 * Added `org.apache.maven.plugins:maven-surefire-plugin:3.2.5`
 * Added `org.apache.maven.plugins:maven-toolchains-plugin:3.1.0`
 * Added `org.basepom.maven:duplicate-finder-maven-plugin:2.0.1`
@@ -30,6 +33,7 @@ This release fixes vulnerabilities CVE-2024-25710 and CVE-2024-26308 in test dep
 * Added `org.jacoco:jacoco-maven-plugin:0.8.11`
 * Added `org.sonarsource.scanner.maven:sonar-maven-plugin:3.10.0.2594`
 * Added `org.sonatype.ossindex.maven:ossindex-maven-plugin:3.2.0`
+* Added `org.sonatype.plugins:nexus-staging-maven-plugin:1.6.13`
 
 ### Class List Extractor Agent
 
