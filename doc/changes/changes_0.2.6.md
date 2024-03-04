@@ -64,9 +64,10 @@ This release fixes vulnerabilities CVE-2024-25710 and CVE-2024-26308 in test dep
 
 * Updated `com.exasol:exasol-testcontainers:6.6.2` to `7.0.1`
 * Updated `com.exasol:test-db-builder-java:3.5.1` to `3.5.3`
+* Updated `com.exasol:udf-debugging-java:0.6.11` to `0.6.12`
 * Updated `org.junit.jupiter:junit-jupiter-api:5.10.0` to `5.10.2`
 * Updated `org.junit.jupiter:junit-jupiter-params:5.10.0` to `5.10.2`
-* Updated `org.mockito:mockito-junit-jupiter:5.5.0` to `5.10.0`
+* Updated `org.mockito:mockito-junit-jupiter:5.5.0` to `5.11.0`
 * Updated `org.slf4j:slf4j-jdk14:2.0.9` to `2.0.12`
 * Updated `org.testcontainers:junit-jupiter:1.19.0` to `1.19.6`
 
