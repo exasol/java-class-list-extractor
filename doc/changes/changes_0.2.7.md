@@ -1,12 +1,14 @@
-# Java Class List Extractor 0.2.7, released 2024-??-??
+# Java Class List Extractor 0.2.7, released 2024-05-08
 
-Code name:
+Code name: Sort class list
 
 ## Summary
 
+This release sorts the class list alphabetically that is written to disk when verification fails. This simplifies comparison with the previous class list.
+
 ## Features
 
-* ISSUE_NUMBER: description
+* #26: Sort class list alphabetically
 
 ## Dependency Updates
 

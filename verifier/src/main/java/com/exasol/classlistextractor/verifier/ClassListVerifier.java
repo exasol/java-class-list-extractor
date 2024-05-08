@@ -21,6 +21,7 @@ import com.exasol.errorreporting.ExaError;
 public class ClassListVerifier {
     private static final Logger LOGGER = Logger.getLogger(ClassListVerifier.class.getName());
     private static final String CLASSES_LIST_FILE_NAME = "classes.lst";
+    private static final String GENERATED_CLASS_LIST_PATH = "target/generated-" + CLASSES_LIST_FILE_NAME;
 
     private final List<Pattern> ignoreInDiffPattern;
 
@@ -46,20 +47,21 @@ public class ClassListVerifier {
                     ExaError.messageBuilder("E-JCLE-VF-13").message("Could not find jar file {{jar file}}.", jarFile)
                             .mitigation("Usually this can be solved by running 'mvn package'.").toString());
         }
+        final SortedSet<String> sortedClassList = new TreeSet<>(classList);
         final Optional<String> classListFile = findClassListInJar(jarFile);
         if (classListFile.isEmpty()) {
-            handleEmptyClassList(classList, jarFile);
+            handleEmptyClassList(sortedClassList, jarFile);
         } else {
-            final Path generatedFilePath = writeClassListToTarget(classList);
+            final Path generatedFilePath = writeClassListToTarget(sortedClassList);
             LOGGER.info(() -> "Wrote generated class list to " + generatedFilePath);
             final Set<String> classesInFile = Arrays.stream(classListFile.get().split("\n")).map(String::trim)
                     .collect(Collectors.toSet());
-            if (classListsAreDifferent(classList, classesInFile)) {
+            if (classListsAreDifferent(sortedClassList, classesInFile)) {
                 throw new AssertionError(ExaError.messageBuilder("E-JCLE-VF-16")
                         .message("Found outdated " + CLASSES_LIST_FILE_NAME + " in the jar file {{jar file}}.", jarFile)
-                        .mitigation(
-                                "You can fix that by downloading the generated file target/generated-classes.lst from the GitHub action summary and copy it to to 'src/main/resources/"
-                                        + CLASSES_LIST_FILE_NAME + "'")
+                        .mitigation("You can fix that by downloading the generated file " + GENERATED_CLASS_LIST_PATH
+                                + " from the GitHub action summary and copy it to to 'src/main/resources/"
+                                + CLASSES_LIST_FILE_NAME + "'")
                         .toString());
             }
         }
@@ -76,7 +78,7 @@ public class ClassListVerifier {
                 .collect(Collectors.toSet());
     }
 
-    private void handleEmptyClassList(final Collection<String> classList, final Path jarFile) {
+    private void handleEmptyClassList(final SortedSet<String> classList, final Path jarFile) {
         final Path generatedFilePath = writeClassListToTarget(classList);
         throw new AssertionError(ExaError.messageBuilder("E-JCLE-VF-14")
                 .message("Could not find " + CLASSES_LIST_FILE_NAME + " in the jar file {{jar file}}.", jarFile)
@@ -87,8 +89,8 @@ public class ClassListVerifier {
                 .parameter("generated class file path", generatedFilePath).toString());
     }
 
-    private Path writeClassListToTarget(final Collection<String> classList) {
-        final Path generatedFilePath = Path.of("target/generated-" + CLASSES_LIST_FILE_NAME).toAbsolutePath();
+    private Path writeClassListToTarget(final SortedSet<String> classList) {
+        final Path generatedFilePath = Path.of(GENERATED_CLASS_LIST_PATH).toAbsolutePath();
         try {
             Files.writeString(generatedFilePath, String.join(System.lineSeparator(), classList));
             return generatedFilePath;
