@@ -20,9 +20,12 @@ This release sorts the class list alphabetically that is written to disk when ve
 * Updated `com.exasol:project-keeper-maven-plugin:4.1.0` to `4.3.0`
 * Updated `org.apache.maven.plugins:maven-compiler-plugin:3.12.1` to `3.13.0`
 * Updated `org.apache.maven.plugins:maven-deploy-plugin:3.1.1` to `3.1.2`
-* Updated `org.apache.maven.plugins:maven-gpg-plugin:3.1.0` to `3.2.2`
+* Removed `org.apache.maven.plugins:maven-gpg-plugin:3.1.0`
+* Removed `org.apache.maven.plugins:maven-javadoc-plugin:3.6.3`
+* Removed `org.apache.maven.plugins:maven-source-plugin:3.2.1`
 * Updated `org.jacoco:jacoco-maven-plugin:0.8.11` to `0.8.12`
 * Updated `org.sonarsource.scanner.maven:sonar-maven-plugin:3.10.0.2594` to `3.11.0.3922`
+* Removed `org.sonatype.plugins:nexus-staging-maven-plugin:1.6.13`
 
 ### Class List Extractor Agent
 

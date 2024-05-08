@@ -1,7 +1,7 @@
 # Java Class List Extractor
 
 [![Build Status](https://github.com/exasol/java-class-list-extractor/actions/workflows/ci-build.yml/badge.svg)](https://github.com/exasol/java-class-list-extractor/actions/workflows/ci-build.yml)
-Java Class list extractor (aggregator pom): [![Maven Central &ndash; Java Class list extractor (aggregator pom)](https://img.shields.io/maven-central/v/com.exasol/java-class-list-extractor-aggregator)](https://search.maven.org/artifact/com.exasol/java-class-list-extractor-aggregator), Class list verifier: [![Maven Central &ndash; Class list verifier](https://img.shields.io/maven-central/v/com.exasol/java-class-list-verifier)](https://search.maven.org/artifact/com.exasol/java-class-list-verifier)
+[![Maven Central &ndash; Class list verifier](https://img.shields.io/maven-central/v/com.exasol/java-class-list-verifier)](https://search.maven.org/artifact/com.exasol/java-class-list-verifier)
 
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=com.exasol%3Ajava-class-list-extractor-aggregator&metric=alert_status)](https://sonarcloud.io/dashboard?id=com.exasol%3Ajava-class-list-extractor-aggregator)
 
