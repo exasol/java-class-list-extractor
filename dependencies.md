@@ -104,13 +104,13 @@
 | [Apache Maven GPG Plugin][50]                          | [Apache-2.0][3]                  |
 | [Apache Maven Source Plugin][51]                       | [Apache License, Version 2.0][3] |
 | [Apache Maven Javadoc Plugin][52]                      | [Apache-2.0][3]                  |
-| [Apache Maven Resources Plugin][53]                    | [Apache-2.0][3]                  |
-| [Project Keeper Maven plugin][19]                      | [The MIT License][20]            |
-| [Nexus Staging Maven Plugin][54]                       | [Eclipse Public License][55]     |
+| [Nexus Staging Maven Plugin][53]                       | [Eclipse Public License][54]     |
 | [Maven Failsafe Plugin][35]                            | [Apache-2.0][3]                  |
 | [JaCoCo :: Maven Plugin][13]                           | [EPL-2.0][14]                    |
 | [error-code-crawler-maven-plugin][16]                  | [MIT License][17]                |
 | [Reproducible Build Maven Plugin][18]                  | [Apache 2.0][8]                  |
+| [Apache Maven Resources Plugin][55]                    | [Apache-2.0][3]                  |
+| [Project Keeper Maven plugin][19]                      | [The MIT License][20]            |
 
 [0]: http://sonarsource.github.io/sonar-scanner-maven/
 [1]: http://www.gnu.org/licenses/lgpl.txt
@@ -165,6 +165,6 @@
 [50]: https://maven.apache.org/plugins/maven-gpg-plugin/
 [51]: https://maven.apache.org/plugins/maven-source-plugin/
 [52]: https://maven.apache.org/plugins/maven-javadoc-plugin/
-[53]: https://maven.apache.org/plugins/maven-resources-plugin/
-[54]: http://www.sonatype.com/public-parent/nexus-maven-plugins/nexus-staging/nexus-staging-maven-plugin/
-[55]: http://www.eclipse.org/legal/epl-v10.html
+[53]: http://www.sonatype.com/public-parent/nexus-maven-plugins/nexus-staging/nexus-staging-maven-plugin/
+[54]: http://www.eclipse.org/legal/epl-v10.html
+[55]: https://maven.apache.org/plugins/maven-resources-plugin/
