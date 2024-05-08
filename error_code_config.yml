@@ -1,0 +1,5 @@
+error-tags:
+  JCLE-ROOT:
+    packages:
+      - com.exasol.classlistextractor
+    highest-index: 1
