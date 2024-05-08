@@ -21,7 +21,7 @@
 | [Apache Maven Source Plugin][15]                       | [Apache License, Version 2.0][3]      |
 | [Apache Maven Javadoc Plugin][16]                      | [Apache-2.0][3]                       |
 | [Nexus Staging Maven Plugin][17]                       | [Eclipse Public License][18]          |
-| [JaCoCo :: Maven Plugin][19]                           | [Eclipse Public License 2.0][20]      |
+| [JaCoCo :: Maven Plugin][19]                           | [EPL-2.0][20]                         |
 | [error-code-crawler-maven-plugin][21]                  | [MIT License][22]                     |
 | [Reproducible Build Maven Plugin][23]                  | [Apache 2.0][8]                       |
 | [Project Keeper Maven plugin][24]                      | [The MIT License][25]                 |
@@ -62,7 +62,7 @@
 | [Artifact reference checker and unifier][37]           | [MIT License][38]                |
 | [Apache Maven Dependency Plugin][39]                   | [Apache-2.0][3]                  |
 | [Maven Failsafe Plugin][40]                            | [Apache-2.0][3]                  |
-| [JaCoCo :: Maven Plugin][19]                           | [Eclipse Public License 2.0][20] |
+| [JaCoCo :: Maven Plugin][19]                           | [EPL-2.0][20]                    |
 | [error-code-crawler-maven-plugin][21]                  | [MIT License][22]                |
 | [Reproducible Build Maven Plugin][23]                  | [Apache 2.0][8]                  |
 | [Apache Maven Deploy Plugin][13]                       | [Apache-2.0][3]                  |
@@ -110,7 +110,7 @@
 | [Apache Maven Javadoc Plugin][16]                      | [Apache-2.0][3]                  |
 | [Nexus Staging Maven Plugin][17]                       | [Eclipse Public License][18]     |
 | [Maven Failsafe Plugin][40]                            | [Apache-2.0][3]                  |
-| [JaCoCo :: Maven Plugin][19]                           | [Eclipse Public License 2.0][20] |
+| [JaCoCo :: Maven Plugin][19]                           | [EPL-2.0][20]                    |
 | [error-code-crawler-maven-plugin][21]                  | [MIT License][22]                |
 | [Reproducible Build Maven Plugin][23]                  | [Apache 2.0][8]                  |
 | [Apache Maven Resources Plugin][55]                    | [Apache-2.0][3]                  |
