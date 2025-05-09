@@ -1,5 +1,7 @@
 # Java Class List Extractor
 
+## ⚠️ This project is deprecated and no longer maintained ⚠️
+
 [![Build Status](https://github.com/exasol/java-class-list-extractor/actions/workflows/ci-build.yml/badge.svg)](https://github.com/exasol/java-class-list-extractor/actions/workflows/ci-build.yml)
 [![Maven Central &ndash; Class list verifier](https://img.shields.io/maven-central/v/com.exasol/java-class-list-verifier)](https://search.maven.org/artifact/com.exasol/java-class-list-verifier)
 
